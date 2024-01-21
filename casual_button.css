@@ -1,0 +1,27 @@
+body {
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: lightyellow;
+    font-family: 'Poppins', sans-serif; /* Use the Poppins font with a fallback to a generic sans-serif font */
+    font-weight: 400; /* Adjust the font weight if needed */
+    font-size: 16px; /* Adjust the font size for the header text */
+}
+
+#casual {
+    font-size: 12vw;
+    cursor: pointer;
+    text-align: center;
+    user-select: none;
+}
+
+#casual:hover {
+    background-color: lightyellow;
+    color: black;
+}
+
+#casual:active {
+    transform: scale(0.75); /* Scale down to 90% of the original size */
+}

@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700');
+
+html, body {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    /* background-color: #f0f0f0; */
+}
+
+.main-wrapper {
+    height: 100vh; /* Full viewport height */
+    width: 100vw; /* Full viewport width */
+    /* background-color: #ffffff;
+    border: 1px solid #e0e0e0; */
+    border-radius: 1vw; /* Responsive border radius */
+    box-shadow: 0 1vw 2vw rgba(0,0,0,0.1);
+    box-sizing: border-box;
+    padding: 1vw; /* Responsive padding */
+    overflow-y: auto; /* Scroll vertically if needed */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    border-radius: 20px;
+    border: 2px solid rgba(107, 190, 162, 0.5);
+    background-color: rgba(32, 42, 51, 0.5);
+}
+
+#box-container {
+    width: 80%; /* Responsive width relative to the wrapper */
+    max-width: 600px; /* Maximum width */
+    display: flex;
+    flex-direction: column; /* Stack boxes vertically */
+    align-items: center; /* Align boxes in the center */
+    gap: 2vh; /* Responsive gap */
+}
+
+.box {
+    height: 15vh; /* Responsive height */
+    min-height: 50px; /* Minimum height */
+    width: 100%; /* Full width of the container */
+    /* background-color: #e0e0e0; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0.5vw 1vw rgba(0,0,0,0.1);
+    transition: transform 1s ease, box-shadow 1s ease;
+    border-top: 1px solid rgb(196, 238, 255); /* Top border only */
+    border-bottom: 1px solid rgb(196, 238, 255);/* Top border only */
+    animation: fadeInExpand 0.5s ease-out; /* Apply animation */
+}
+
+.box:hover {
+    transform: translateY(-0.5vw);
+    box-shadow: 0 1vw 1.5vw rgba(0,0,0,0.15);
+}
+
+#title {
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 8vw; /* Responsive font size */
+    color: rgb(164, 223, 195);
+    margin-bottom: 2vh;
+}
+
+.info {
+    display: flex;
+    align-items: center;
+    font-size: 6vw; /* Responsive font size */
+    color: rgb(117, 248, 255);
+}
+
+.label {
+    font-weight: 600;
+    margin-right: 1vw;
+}
+
+@keyframes fadeInExpand {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

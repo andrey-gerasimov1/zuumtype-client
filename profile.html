@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication with Username</title>
+    <link rel="stylesheet" href="profile.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+
+    <main>
+        <div id="authForm">
+            <!-- Login Section -->
+            <div id="loginSection" class="auth-section">
+                <h2>Sign In</h2>
+                <input type="email" placeholder="email" id="loginEmail">
+                <input type="password" placeholder="password" id="loginPassword"><br><br>
+                <button id="signInButton">Submit</button>
+                <p>Don't have an account? <span id="switchToSignUp" class="auth-switch">Sign Up</span></p>
+            </div>
+    
+            <!-- Signup Section -->
+            <div id="signupSection" class="auth-section hidden">
+                <h2>Sign Up</h2>
+                <input type="text" placeholder="username" id="signUpUsername">
+                <input type="email" placeholder="email" id="signUpEmail">
+                <input type="password" placeholder="password" id="signUpPassword"><br><br>
+                <button id="signUpButton">Submit</button>
+                <p>Already have an account? <span id="switchToSignIn" class="auth-switch">Log In</span></p>
+            </div>
+        </div>
+
+        <div id="secretContent" class="hidden">
+            <h3>Welcome, [Username]!</h3>
+            <h3>This is top secret information that you can only see if</h3>
+            <h1>AUTHENTICATED</h1>
+            <button id="signOutButton">Sign Out</button>
+        </div>
+    </main>
+    <script src="/profile.js"></script> <!-- Include your external JavaScript file -->
+</body>
+</html>

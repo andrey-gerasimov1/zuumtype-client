@@ -1,0 +1,65 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+}
+
+#content, #popup {
+    text-align: center;
+    position: absolute;
+    background-color: white;
+    border: 1px solid black;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    border-radius: 10px;
+    height: 20vh;
+}
+
+
+
+#popup {
+    display: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#content {
+    display: flex; /* Enables flexbox */
+    flex-direction: column; /* Stacks flex items vertically */
+    align-items: center; /* Horizontally centers the flex items (since the direction is column) */
+    justify-content: flex-start; /* Vertically centers the flex items, if you also want vertical centering */
+    /* You may need to set a specific height or remove it depending on the rest of your layout */
+}
+
+#closeButton {
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    padding: 15px 32px; /* Padding around the text */
+    font-size: 16px; /* Font size */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Cursor changes to a pointer on hover */
+}
+
+#closeButton:hover {
+    background-color: #45a049; /* Darker green background on hover */
+}
+
+#counterContainer {
+    display: flex; /* Enables flexbox */
+    flex-direction: column; /* Stacks flex items vertically */
+    align-items: center; /* Horizontally centers the flex items */
+    justify-content: center; /* Vertically centers the flex items */
+    height: 50px; /* Adjust height as needed */
+    margin: 10px 0; /* Adds some space around the container */
+}
+
+#counter, #closeButton {
+    width: 100%; /* Makes them occupy the full width of their container */
+    text-align: center; /* Centers the text */
+}
+

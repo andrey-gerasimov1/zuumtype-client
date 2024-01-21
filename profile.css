@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700');
+        body {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+            background-color: transparent;
+            color: lightcyan;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        header, footer {
+            background-color: #333;
+            color: white;
+            padding: 1em 0;
+        }
+
+        main {
+            padding: 2em;
+
+        }
+
+        #element5::before {
+            content: "";
+            position: absolute;
+            top: 10px; /* Adjust top position for the inner outline */
+            left: 10px; /* Adjust left position for the inner outline */
+            right: 10px; /* Adjust right position for the inner outline */
+            bottom: 10px; /* Adjust bottom position for the inner outline */
+            border: 2px solid #000; /* Border color and thickness for the inner outline */
+            pointer-events: none; /* Ensure the pseudo-element doesn't interfere with interactions */
+        }
+
+        #authForm {
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid rgba(173, 216, 230, 0.5);
+            transition: border 0.5s ease; /* Add transition for the border */
+        }
+
+        #secretContent {
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            /* background-color: white; */
+            border-radius: 10px;
+            outline: 2px solid rgba(173, 216, 230, 0.5);
+        }
+
+        input[type="text"], input[type="email"], input[type="password"] {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+            text-align: center;
+            box-sizing: border-box; /* Include padding and border in the element's total width */
+            width: 100%; /* Full width */
+            padding: 0px; /* Padding inside the elements */
+            margin: 10px 0; /* Margin outside the elements */
+            border: none; /* Remove border */
+            outline: none; /* Remove focus outline */
+            box-shadow: none; /* Remove box shadow */
+            background-color: transparent; /* Transparent background */
+            color: lightcyan; /* Text color */
+        }
+
+        input[type="text"]::placeholder, input[type="email"]::placeholder, input[type="password"]::placeholder {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+            text-align: center;
+            color: lightgrey; /* Placeholder text color */
+            opacity: 1; /* Full opacity */
+        }
+
+
+        button {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+            background-color: transparent;
+            color: white;
+            padding: 10px 20px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            /* outline: 1px solid lightcyan; */
+        }
+
+        button:hover {
+            background-color: lightcyan;
+            color: rgb(5, 7, 36);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media screen and (max-width: 600px) {
+            input[type="text"], input[type="email"], input[type="password"], button {
+                width: 100%;
+            }
+        }
+
+
+
+/* styles.css */
+.header-container {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    color: lightcyan;
+    display: flex;
+    line-height: 10px;
+    justify-content: center;
+    
+}
+
+.header-container h3 {
+    margin-right: 10px; /* Adjust the spacing as needed */
+    font-size: 24px; /* Adjust the font size as needed */
+}
+
+.header-container h4 {
+    font-size: 16px; /* Adjust the font size as needed */
+}
+
+.auth-switch {
+    text-decoration: underline;
+    cursor: pointer;
+    color: lightcyan;
+}
+
+.auth-switch:hover {
+    color: #fff;
+}
+
+.fade-out {
+    animation: fadeOut 0.5s;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.fade-in {
+    animation: fadeIn 0.5s;
+    opacity: 1;
+    visibility: visible;
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; visibility: visible; }
+    to { opacity: 0; visibility: hidden; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; visibility: hidden; }
+    to { opacity: 1; visibility: visible; }
+}

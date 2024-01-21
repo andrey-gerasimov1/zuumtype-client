@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700');
+
+@keyframes animatedBackground {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    flex-wrap: wrap;
+    height: calc(100vh - 38px); /* Assuming header is 50px tall */
+    /* background-color: rgb(5, 7, 36); */
+    justify-content: flex-start;
+
+    background: linear-gradient(-45deg, rgb(5, 7, 36), rgb(25, 18, 43), rgb(15, 21, 35), rgb(10, 12, 41));
+    background-size: 400% 400%;
+    animation: animatedBackground 60s ease infinite;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 12px;
+}
+
+#sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 40px;
+    background-color: #555;
+    transition: width 0.5s;
+    overflow-x: hidden;
+    white-space: nowrap;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#sidebarText {
+    position: fixed;
+    top: 8px; /* Adjust as needed */
+    left: 50px; /* Adjust to position correctly relative to the sidebar */
+    transition: left 0.5s; /* Sync with sidebar's transition */
+    color: lightcyan; /* or any color of your choice */
+    z-index: 9; /* Just below the sidebar's z-index */
+    text-decoration: none; /* Removes the underline */
+}
+
+#sidebar a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    padding: 15px;
+    transition: 0.3s;
+    text-align: center;
+}
+
+#sidebar:hover {
+    width: 200px;
+}
+
+#sidebar:hover + #sidebarText {
+    left: 210px; /* Adjust this value based on the expanded width of the sidebar */
+}
+
+#sidebar:hover a {
+    opacity: 1;
+}
+
+#sidebar a {
+    opacity: 0;
+}
+
+#sidebar a:hover {
+    background-color: #777;
+}
+
+main#aboutContent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    transition: transform 1s ease, opacity 1s ease;
+    opacity: 1;
+    color: white;
+}
+
+main#aboutContent.slideUp {
+    transform: translate(-50%, -150%); /* Slide up */
+    /* opacity: 0; */
+}
+
+#aboutTitle {
+    transition: transform 1s ease;
+}
+
+#aboutTitle.slide-up {
+    transform: translateY(-100px); /* Adjust the value as needed */
+}
+
+/* Styles for the links container */
+#linksContainer {
+    position: absolute;
+    top: 60%; /* Adjust to position links correctly */
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: white;
+}
+
+/* Adjust styles for individual links */
+main#aboutContent a {
+    display: block;
+    margin-top: 10px;
+    width: 20vw;
+
+    margin-bottom: 10px; /* Added bottom margin for spacing between links */
+    text-decoration: none;
+    color: #000;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s ease forwards;
+    color: white;
+}
+
+
+main#aboutContent a img {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Add any additional styles you need */
+

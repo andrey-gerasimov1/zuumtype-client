@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <script type='module' src="/script.js"></script>
+    <script src="
+https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js
+"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <div id="fetchedContent"></div> <!-- This div will hold the text -->
+            <button id="myButton">play</button>
+            <button id="createRoomButton" style="display: none;">create room</button>
+            <button id="joinRoomButton" style="display: none;">join room</button>
+            <div id="joinRoomSection" style="display: none;">
+                <input id="roomInput" type="text" placeholder="Enter Room Code">
+                <button id="joinRoomConfirmButton">Join</button>
+            </div>
+            <div id="waitingMessage" style="display: none;">Waiting for more players...</div>
+
+            <button id="nextPrivateGame" style="display: none;">next game</button>
+            
+            
+            <!-- Add a footer div with the input box -->
+            <div class="footer">
+                <input id="userInput" type="text" placeholder="" disabled autocomplete="off">
+                <button id="readyUpButton" style="display: none;">ready up</button>
+            </div>
+        </div>
+
+        <div id="roomCodeDisplay" style="display: none;">
+            Room Code <br><span id="roomCodeText"></span><br>
+            <button id="copyRoomCodeButton">Copy</button>
+        </div>
+        
+        <div class="sidebar">
+            
+            <!-- <h2>Sidebar</h2>
+            <p>This is the sidebar content.</p> -->
+        </div>
+    </div>
+</body>
+<script>
+    let allowCircle = true;
+    document.addEventListener("DOMContentLoaded", function() {
+        const sidebar = document.querySelector('.sidebar');
+
+        
+
+        function createCircle() {
+            let circle = document.createElement('div');
+            circle.classList.add('bouncing-circle');
+            circle.addEventListener('animationend', function(event) {
+                if (event.animationName === 'fadeOut') {
+                    circle.remove();
+                }
+            });
+            return circle;
+        }
+
+        function setupBouncingCircle(circle) {
+            const sidebarWidth = sidebar.clientWidth;
+            const sidebarHeight = sidebar.clientHeight;
+            const circleWidth = 20; // Diameter of the circle
+            const circleHeight = 20; // Diameter of the circle
+            circle.style.width = circleWidth + 'px';
+            circle.style.height = circleHeight + 'px';
+
+            let posX = Math.floor(Math.random() * (sidebarWidth - circleWidth));
+            let posY = Math.floor(Math.random() * (sidebarHeight - circleHeight));
+            let velocityX = (Math.random() < 0.5 ? -1 : 1) * 2;
+            let velocityY = (Math.random() < 0.5 ? -1 : 1) * 2;
+
+            function getRandomBlueColor() {
+                const r = Math.floor(Math.random() * 100);
+                const g = Math.floor(Math.random() * 100);
+                const b = 200 + Math.floor(Math.random() * 56);
+                return `rgb(${r}, ${g}, ${b})`;
+            }
+
+            function updatePosition() {
+                posX += velocityX;
+                posY += velocityY;
+                let collided = false;
+
+                if (posX <= 0 || posX >= sidebarWidth - circleWidth) {
+                    velocityX *= -1;
+                    collided = true;
+                }
+                if (posY <= 0 || posY >= sidebarHeight - circleHeight) {
+                    velocityY *= -1;
+                    collided = true;
+                }
+
+                if (collided) {
+                    circle.style.backgroundColor = getRandomBlueColor();
+                }
+
+                circle.style.left = posX + 'px';
+                circle.style.top = posY + 'px';
+
+                requestAnimationFrame(updatePosition);
+            }
+
+            updatePosition();
+        }
+
+        sidebar.addEventListener('contextmenu', function(event) {
+            event.preventDefault(); // Prevent the default context menu
+            const circles = Array.from(sidebar.querySelectorAll('.bouncing-circle'));
+            // Find the first circle that is not fading out
+            const circleToRemove = circles.find(c => !c.classList.contains('bouncing-circle-fade-out'));
+            if (circleToRemove) {
+                circleToRemove.classList.add('bouncing-circle-fade-out');
+            }
+        });
+
+        sidebar.addEventListener('click', function() {
+            if (allowCircle == true){
+                let newCircle = createCircle();
+                sidebar.appendChild(newCircle);
+                setupBouncingCircle(newCircle);
+            }
+        });
+    });
+</script>
+</html>

@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | zuumtype</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700');
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 12px;
+        }
+
+        #sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 40px;
+            background-color: #555;
+            transition: width 0.5s;
+            overflow-x: hidden;
+            white-space: nowrap;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        #sidebarText {
+            position: fixed;
+            top: 8px; /* Adjust as needed */
+            left: 50px; /* Adjust to position correctly relative to the sidebar */
+            transition: left 0.5s; /* Sync with sidebar's transition */
+            color: lightcyan; /* or any color of your choice */
+            z-index: 9; /* Just below the sidebar's z-index */
+            text-decoration: none; /* Removes the underline */
+        }
+
+        #sidebar a {
+            text-decoration: none;
+            color: white;
+            display: block;
+            padding: 15px;
+            transition: 0.3s;
+            text-align: center;
+        }
+
+        #sidebar:hover {
+            width: 200px;
+        }
+
+        #sidebar:hover + #sidebarText {
+            left: 210px; /* Adjust this value based on the expanded width of the sidebar */
+        }
+
+        #sidebar:hover a {
+            opacity: 1;
+        }
+
+        #sidebar a {
+            opacity: 0;
+        }
+
+        #sidebar a:hover {
+            background-color: #777;
+        }
+
+        main {
+            margin-left: 40px;
+        }
+
+        /* Existing CSS remains the same */
+
+        /* Added CSS */
+
+        @keyframes animatedBackground {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        #contentContainer {
+            display: flex;
+            flex-wrap: wrap;
+            height: calc(100vh - 38px); /* Assuming header is 50px tall */
+            /* background-color: rgb(5, 7, 36); */
+            justify-content: flex-start;
+
+            background: linear-gradient(-45deg, rgb(5, 7, 36), rgb(25, 18, 43), rgb(15, 21, 35), rgb(10, 12, 41));
+            background-size: 400% 400%;
+            animation: animatedBackground 60s ease infinite;
+        }
+
+        #element1 {
+            background-color: rgba(21, 21, 27,0.5);
+            flex: 2 0 calc(66.66% - 20px); /* Width */
+            height: 50%; /* Height */
+            box-shadow: inset -2px -2px 0 0 rgb(173, 216, 230); /* Adjust color and width as needed */
+            border-bottom-right-radius: 25px;
+        }
+
+
+        /* ... Previous CSS remains ... */
+
+        #yellowContainer {
+            flex: 1 0 calc(11.11% - 20px); /* Width based on your spec */
+            height: 50%; /* 50% of the space height */
+            display: flex;
+            flex-direction: column; /* Stack the yellow elements */
+        }
+
+        #element2, #element3, #element4 {
+            background-color: transparent;
+            height: calc(33.33%); /* Each takes 1/3 of the container height */
+            
+        }
+
+
+        #element5 {
+            background-color: transparent;
+            flex: 2 0 calc(22.22% - 20px); /* Width */
+            height: 50%; /* Height */
+            display: flex; /* Turn element5 into a flex container */
+            align-items: center; /* Center vertically within the flex container */
+        }
+
+        #element6 {
+            background-color: transparent;
+            /*flex: 1 0 calc(30% - 20px); /* Width */
+            width: 25%;
+            height: 50%; /* Height */
+            
+            display: flex; /* Turn element5 into a flex container */
+            align-items: center; /* Center vertically within the flex container */
+            margin-left: 5%;
+            
+        }
+
+        #element7 {
+            background-color: transparent;
+            /*flex: 1 0 calc(5%); /* Width */
+            width: 15%;
+            height: 50%; /* Height */
+            margin-left: 5%;
+            margin-top: 20px;
+            height: calc(50% - 20px);
+            
+        }
+
+        #element8 {
+            background-color: transparent;
+            /*flex: 1 0 calc(5% - 20px); /* Width */
+            width: 15%;
+            height: 50%; /* Height */
+            margin-left: 2%;
+            margin-top: 20px;
+            height: calc(50% - 20px);
+        }
+
+        #adOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+            z-index: 100; /* Ensures it's above other elements */
+        }
+
+        #element1, #element2, #element3, #element4, #element5, #element6,  #element7, #element8 {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+
+
+        /* Apply Animations to Elements */
+        #element1, #element5, #element6 {
+            animation: zoomIn 0.5s ease-out forwards;
+
+        }
+
+        #element2, #element3, #element4, #element7, #element8 {
+            animation: zoomIn 0.5s ease-out forwards;
+
+        }
+
+        /* Animation Delays */
+        #element1 { animation-delay: 0.1s; }
+        #element2 { animation-delay: 0.3s; }
+        #element3 { animation-delay: 0.5s; }
+        #element4 { animation-delay: 0.7s; }
+        #element5 { animation-delay: 0.5s; }
+        #element6 { animation-delay: 0.2s; }
+        #element7 { animation-delay: 0.4s; }
+        #element8 { animation-delay: 0.6s; }
+
+
+        
+
+    </style>
+    <link rel="icon" href="/zuumtype_logo_center.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/zuumtype_logo_center.png" type="image/x-icon">    
+</head>
+
+<body>
+
+    <header>
+        v1.0
+    </header>
+
+    <div id="sidebar">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/about">About</a>
+    </div>
+
+    <a id="sidebarText" href="/dashboard"></a>
+
+    <!-- Remaining HTML remains the same -->
+
+    <main>
+        <div id="contentContainer">
+            <div id="element1">
+                <iframe id="iframeA" src="index.html" frameborder="0" width="100%" height="100%"></iframe>
+            </div>
+            <div id="yellowContainer">
+                <div id="element2">
+                    <iframe src="competitive_button.html" frameborder="0" width="100%" height="100%"></iframe>
+                </div>
+                <div id="element3">
+                    <iframe id="iframeG" src="casual_button.html" frameborder="0" width="100%" height="100%"></iframe>
+                </div>
+                <div id="element4">
+                    <iframe id="iframeF" src="practice_button.html" frameborder="0" width="100%" height="100%"></iframe>
+                </div>
+            </div>
+            <div id="element5">
+                <iframe id="iframeB" src="profile.html" frameborder="0" width="100%" height="100%"></iframe>
+            </div>
+            <div id="element6">
+                <iframe src="leaderboard.html" frameborder="0" width="100%" height="100%"></iframe>
+            </div>
+            <div id="element7">
+                <iframe id="iframeC" src="live_feed.html" frameborder="0" width="100%" height="90%"></iframe>
+            </div>
+            <div id="element8">
+                <iframe id="iframeD" src="past_matches.html" frameborder="0" width="100%" height="90%"></iframe>
+            </div>
+            <div id="adOverlay" style="display: none;">
+                <iframe id="iframeE" src="ad_system.html" frameborder="0" width="100%" height="100%"></iframe>
+                <button onclick="closeAd()">Close Ad</button>
+            </div>            
+        </div>
+    </main>
+
+</body>
+<script>
+
+    window.onresize = function() {
+        var iframes = document.getElementsByTagName('iframe');
+        for (var i = 0; i < iframes.length; i++) {
+            var iframe = iframes[i];
+            // Calculate new size based on window size or any other factor
+            // Example: iframe.style.height = (window.innerHeight / 2) + 'px';
+        }
+    };
+
+    // In Parent Page
+    // window.addEventListener('message', function(event) {
+    //     // Send the login data to Iframe B
+    //     document.getElementById('iframeB').contentWindow.postMessage(event.data, '*');
+    // });
+
+    // Listen for messages from both iframes
+    window.addEventListener('message', function(event) {
+        // Identify the source iframe and determine the target iframe
+        let targetIframe;
+        if (event.source === document.getElementById('iframeA').contentWindow) {
+            if (event.data == "adactivate"){
+                console.log("but of course!")
+                targetIframe = document.getElementById('iframeE');
+                document.getElementById('adOverlay').style.display = 'block';
+            } else {
+                if (event.data[0] == "latest"){
+                    targetIframe = document.getElementById('iframeD');
+                } else {
+                    console.log("This is it: "+event.data[1]);
+                    console.log("here is the length of the event data: "+Object.keys(event.data).length)
+                    if (Object.keys(event.data).length == 4){
+                        console.log("Ladies and gentlemen, we may have a winner...");
+                        if (event.data[0] == "iframeC"){
+                            targetIframe = document.getElementById('iframeC');
+                            console.log("The winner is here!");
+                        } else {
+                            targetIframe = document.getElementById('iframeB');
+                            console.log("The winner is NOT here...");
+                        }
+                    } else {
+                        targetIframe = document.getElementById('iframeB');
+                    }
+                }
+            }
+        } else {
+            if (event.source === document.getElementById('iframeB').contentWindow) {
+                console.log("Okay, this is a SCORE TEST ladies and gents: "+event.data[0])
+                if (event.data[0] == "scores"){
+                    targetIframe = document.getElementById('iframeD');
+                } else {
+                    targetIframe = document.getElementById('iframeA');
+                }
+                } else {
+                    if (event.source === document.getElementById('iframeE').contentWindow) {
+                        if (event.data == "closead") {
+                            document.getElementById('adOverlay').style.display = 'none';
+                            targetIframe = document.getElementById('iframeA');
+                        }
+                    } else {
+                    if (event.source === document.getElementById('iframeF').contentWindow){
+                        if (event.data == "friendsMode") {
+                            targetIframe = document.getElementById('iframeA');
+                        }
+                    } else {
+                        console.log("Casual things are happening 2 before");
+                        if (event.source === document.getElementById('iframeG').contentWindow){
+                            console.log("Casual things are happening before");
+                            if (event.data == "casualMode"){
+                                console.log("Casual things are happening");
+                                targetIframe = document.getElementById('iframeA');
+                            }
+                        }
+                    }
+                }
+            } 
+        }
+
+        // Forward the message to the target iframe
+        if (targetIframe) {
+            targetIframe.contentWindow.postMessage(event.data, '*');
+        }
+    });
+
+    // function closeAd() {
+    //     document.getElementById('adOverlay').style.display = 'none';
+    // }
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const text = "zuumtype";
+        let typingTimer; // Timer for typing effect
+        let index = 0; // Current position in text
+        let isCorrecting = false; // Flag to indicate correction mode
+        let typos = []; // Store indices of typos
+
+        function typeText() {
+            if (index < text.length && !isCorrecting) {
+                let char = text[index];
+                // 15% chance to make a typo
+                if (Math.random() < 0.05) {
+                    char = getRandomTypo(char);
+                    if (char !== text[index]) {
+                        typos.push(index); // Store typo index only if it's a real typo
+                    }
+                }
+                document.getElementById('sidebarText').textContent += char;
+                index++;
+                typingTimer = setTimeout(typeText, 50); // Typing speed
+            } else if (typos.length > 0 && !isCorrecting) {
+                // Start correcting the first typo
+                typingTimer = setTimeout(() => {
+                    isCorrecting = true;
+                    index = typos[0]; // Go back to the first typo
+                    backspaceText(); // Start backspacing
+                }, 500); // Delay before backspacing
+            } else if (isCorrecting) {
+                // Continue correcting
+                typingTimer = setTimeout(backspaceText, 30); // Backspacing speed
+            } else {
+                // Typing complete and correct
+                resetTyping();
+            }
+        }
+
+        function backspaceText() {
+            const textContent = document.getElementById('sidebarText').textContent;
+            if (textContent.length > index) {
+                // Remove one character
+                document.getElementById('sidebarText').textContent = textContent.slice(0, -1);
+                typingTimer = setTimeout(backspaceText, 30); // Backspacing speed
+            } else {
+                // Done backspacing, start typing correctly
+                isCorrecting = false;
+                typos = [];
+                typeText(); // Start typing immediately
+            }
+        }
+
+        function resetTyping() {
+            typingTimer = setTimeout(() => {
+                document.getElementById('sidebarText').textContent = ''; // Clear the text
+                index = 0;
+                typos = [];
+                isCorrecting = false;
+                typeText(); // Restart typing
+            }, 30000); // 60-second delay after correct typing
+        }
+
+        function getRandomTypo(char) {
+            const keyboardMap = {
+                'a': ['q', 'w', 's', 'z'],
+                'b': ['v', 'g', 'h', 'n'],
+                'c': ['x', 'd', 'f', 'v'],
+                'd': ['s', 'e', 'r', 'f', 'c', 'x'],
+                'e': ['w', 's', 'd', 'r'],
+                'f': ['d', 'r', 't', 'g', 'v', 'c'],
+                'g': ['f', 't', 'y', 'h', 'b', 'v'],
+                'h': ['g', 'y', 'u', 'j', 'n', 'b'],
+                'i': ['u', 'j', 'k', 'o'],
+                'j': ['h', 'u', 'i', 'k', 'm', 'n'],
+                'k': ['j', 'i', 'o', 'l', 'm'],
+                'l': ['k', 'o', 'p'],
+                'm': ['n', 'j', 'k'],
+                'n': ['b', 'h', 'j', 'm'],
+                'o': ['i', 'k', 'l', 'p'],
+                'p': ['o', 'l'],
+                'q': ['w', 'a'],
+                'r': ['e', 'd', 'f', 't'],
+                's': ['w', 'e', 'd', 'x', 'z', 'a'],
+                't': ['r', 'f', 'g', 'y'],
+                'u': ['y', 'h', 'j', 'i'],
+                'v': ['c', 'f', 'g', 'b'],
+                'w': ['q', 'a', 's', 'e'],
+                'x': ['z', 's', 'd', 'c'],
+                'y': ['t', 'g', 'h', 'u'],
+                'z': ['a', 's', 'x']
+            };
+
+            // Get random adjacent key
+            const possibleTypos = keyboardMap[char.toLowerCase()] || [char];
+            return possibleTypos[Math.floor(Math.random() * possibleTypos.length)];
+        }
+
+        function handleVisibilityChange() {
+            if (document.hidden) {
+                clearTimeout(typingTimer); // Clear timer when tab is inactive
+            } else {
+                // Tab is active, resume typing
+                document.getElementById('sidebarText').textContent = ''; // Clear and restart
+                index = 0;
+                typos = [];
+                isCorrecting = false;
+                typingTimer = setTimeout(typeText, 50); // Start typing immediately
+            }
+        }
+
+        document.addEventListener("visibilitychange", handleVisibilityChange, false);
+
+        typeText(); // Start the typing effect
+    });
+
+
+
+
+
+
+</script>
+
+</html>
